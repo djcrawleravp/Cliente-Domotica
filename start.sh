@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Agrega djcrawleravp a sudoers
-echo "djcrawleravp ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers.d/djcrawleravp1
+echo "djcrawleravp ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers.d/djcrawleravp
 
 # Instalar Dependencias
 apt-get update && apt-get upgrade -y
