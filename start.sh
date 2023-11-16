@@ -8,8 +8,7 @@ apt-get update && apt-get upgrade -y
 apt-get install iptables -y
 apt-get install curl -y
 apt-get install git -y 
-wget https://download.zerotier.com/dist/zerotier-one_debian_stretch_amd64.deb
-dpkg -i zerotier-one_debian_stretch_amd64.deb
+curl -s https://install.zerotier.com | sudo bash
 
 #Iniciar Zero-Tier y Unirse a la red (Clientes)
 service zerotier-one start
