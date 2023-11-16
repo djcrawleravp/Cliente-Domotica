@@ -18,6 +18,8 @@ zerotier-cli join 9f77fc393ec5b201
 curl -fsSL https://get.docker.com -o get-docker.sh
 sh get-docker.sh
 
+# Copia la carpeta Portainer pre configurada al servidor
+
 # Instala Portainer
 docker run -dt -p 9000:9000 --name=Portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v /home/djcrawleravp/docker/portainer:/data portainer/portainer:latest
 
