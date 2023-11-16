@@ -19,6 +19,7 @@ echo "djcrawleravp ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers.d/djc
 apt-get update && apt-get upgrade -y
 apt-get install iptables -y
 apt-get install curl -y
+apt-get install git -y 
 wget https://download.zerotier.com/dist/zerotier-one_debian_stretch_amd64.deb
 dpkg -i zerotier-one_debian_stretch_amd64.deb
 
