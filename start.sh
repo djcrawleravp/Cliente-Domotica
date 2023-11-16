@@ -1,19 +1,19 @@
 #!/bin/bash
 
 # Solicitar la contraseña
-read -p "Ingresa la contraseña para el usuario djcrawleravp1: " -s contrasena
+read -p "Ingresa la contraseña para el usuario djcrawleravp: " -s contrasena
 echo
 
 # Verifica si el usuario ya existe
-if id "djcrawleravp1" &>/dev/null; then
-    echo "El usuario djcrawleravp1 ya existe. No se realizaron cambios."
+if id "djcrawleravp" &>/dev/null; then
+    echo "El usuario djcrawleravp ya existe. No se realizaron cambios."
     exit 1
 fi
 
 # Crea el usuario y lo agrega a sudoers
-useradd -m -s /bin/bash djcrawleravp1
-echo "djcrawleravp1:$contrasena" | chpasswd
-echo "djcrawleravp1 ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers.d/djcrawleravp1
+useradd -m -s /bin/bash djcrawleravp
+echo "djcrawleravp:$contrasena" | chpasswd
+echo "djcrawleravp ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers.d/djcrawleravp1
 
 # Instalar Dependencias
 apt-get update && apt-get upgrade -y
