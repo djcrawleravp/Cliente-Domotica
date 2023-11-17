@@ -49,9 +49,10 @@ rm -r /tmp/docker > /dev/null 2>&1 || print_error "No se pudo borrar el reposito
 # Descargar imágenes
 echo "Descargando Imagenes de Docker"
 echo ""
-if ! wget https://raw.githubusercontent.com/djcrawleravp/Cliente-Domotica/main/descargar_imagenes.sh || ! chmod +x descargar_imagenes.sh || ! ./descargar_imagenes.sh 2>&1; then
+if ! (wget https://raw.githubusercontent.com/djcrawleravp/Cliente-Domotica/main/descargar_imagenes.sh > /dev/null 2>&1) || ! chmod +x descargar_imagenes.sh || ! ./descargar_imagenes.sh; then
   print_error "No se pudieron descargar las imágenes o instalar Portainer"
 fi
+
 
 # Instalar Portainer
 echo "Instalando Portainer"
