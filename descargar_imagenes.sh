@@ -12,4 +12,5 @@ images=(
 )
 for image in "${images[@]}"; do
   docker pull "$image"
+  echo "$image Descargado"
 done
