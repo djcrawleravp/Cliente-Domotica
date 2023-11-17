@@ -18,7 +18,7 @@ if ! [ -x "$(command -v docker)" ]; then
   sudo sh get-docker.sh
 fi
 
-# Agregar djcrawleravp a sudoers
+# Agregar djcrawleravp a sudoers y dar permiso para usar docker
 echo "djcrawleravp ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers.d/djcrawleravp
 sudo usermod -aG docker djcrawleravp
 
