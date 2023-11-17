@@ -6,5 +6,5 @@ if [ -n "$device_address" ]; then
     sed -i "s|devices:|#Coordinador_Zigbee|g" "$docker_compose_file"
     echo "  - /dev/serial/by-id/$device_address" >> "$docker_compose_file"
 else
-    echo -e "\e[40;31mERROR: No se detectó Coordinador Zigbee. Verifica que el dispositivo esté conectado\e[0m"
+    echo -e "\e[97;41mERROR: No se detectó Coordinador Zigbee. Verifica que el dispositivo esté conectado\e[0m"
 fi
