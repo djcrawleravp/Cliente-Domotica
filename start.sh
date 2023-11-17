@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Agrega djcrawleravp a sudoers
+# Agregar djcrawleravp a sudoers
 echo "djcrawleravp ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers.d/djcrawleravp
 
 # Instalar Dependencias
@@ -21,18 +21,17 @@ if ! [ -x "$(command -v docker)" ]; then
   sudo sh get-docker.sh
 fi
 
-# Copia la carpeta Portainer pre configurada al servidor
-
+# Copiar la carpeta Portainer pre configurada al servidor
 chmod -R 777 /home/djcrawleravp
 git clone https://github.com/djcrawleravp/Cliente-Domotica.git /tmp/docker
 mv /tmp/docker/docker /home/djcrawleravp/docker
 rm -r /tmp/docker
 
-# Descarga imagenes e Instala Portainer
+# Descargar imagenes e Instalar Portainer
 ./descargar_imagenes.sh
 docker run -dt -p 9000:9000 --name=Portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v /home/djcrawleravp/docker/portainer:/data portainer/portainer:latest
 
-# Limpiar pantalla y Obtener la dirección del coordinador Zigbee
+# Limpiar pantalla, obtener la dirección del coordinador Zigbee y remplazarla en el docker compose
 ./agregar_coordinador.sh
 
 echo ""
