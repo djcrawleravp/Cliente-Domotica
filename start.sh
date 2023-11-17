@@ -61,7 +61,7 @@ echo "Detectando Coordinador y añadiendolo al docker compose"
 echo ""
 wget https://raw.githubusercontent.com/djcrawleravp/Cliente-Domotica/main/agregar_coordinador.sh > /dev/null 2>&1 || print_error "No se pudo ejecutar agregar_coordinador.sh"
 chmod +x agregar_coordinador.sh > /dev/null 2>&1 || print_error "No se pudo ejecutar agregar_coordinador.sh"
-./agregar_coordinador.sh > /dev/null 2>&1 || print_error "No se pudo ejecutar agregar_coordinador.sh"
+./agregar_coordinador.sh 
 
 echo ""
 echo "No te olvides de aceptar el permiso de join en Zero-Tier"
