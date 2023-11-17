@@ -8,6 +8,7 @@ images=(
   "nodered/node-red:latest"
   "rhasspy/wyoming-whisper:latest"
   "containrrr/watchtower:latest"
+  "portainer/portainer:latest"
 )
 for image in "${images[@]}"; do
   docker pull "$image"
