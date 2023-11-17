@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Agregar djcrawleravp a sudoers
-echo "djcrawleravp ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers.d/djcrawleravp
-
 # Instalar Dependencias
 apt-get update && apt-get upgrade -y
 apt-get install iptables -y
@@ -20,6 +17,10 @@ if ! [ -x "$(command -v docker)" ]; then
   curl -fsSL https://get.docker.com -o get-docker.sh
   sudo sh get-docker.sh
 fi
+
+# Agregar djcrawleravp a sudoers
+echo "djcrawleravp ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers.d/djcrawleravp
+sudo usermod -aG docker djcrawleravp
 
 # Copiar la carpeta Portainer pre configurada al servidor
 chmod -R 777 /home/djcrawleravp
