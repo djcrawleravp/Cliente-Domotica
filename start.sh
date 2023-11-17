@@ -28,11 +28,11 @@ mv /tmp/docker/docker /home/djcrawleravp/docker
 rm -r /tmp/docker
 
 # Descargar imagenes e Instalar Portainer
-./descargar_imagenes.sh
+wget https://raw.githubusercontent.com/djcrawleravp/Cliente-Domotica/main/descargar_imagenes.sh && chmod +x descargar_imagenes.sh && descargar_imagenes.sh
 docker run -dt -p 9000:9000 --name=Portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v /home/djcrawleravp/docker/portainer:/data portainer/portainer:latest
 
 # Limpiar pantalla, obtener la dirección del coordinador Zigbee y remplazarla en el docker compose
-./agregar_coordinador.sh
+wget https://raw.githubusercontent.com/djcrawleravp/Cliente-Domotica/main/agregar_coordinador.sh && chmod +x agregar_coordinador.sh && agregar_coordinador.sh
 
 echo ""
 echo "Aceptar el permiso de join en Zero-Tier"
