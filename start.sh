@@ -51,7 +51,7 @@ echo "Descargando Imagenes de Docker"
 echo ""
 wget https://raw.githubusercontent.com/djcrawleravp/Cliente-Domotica/main/descargar_imagenes.sh > /dev/null 2>&1 || print_error "No se pudieron descargar las imágenes o instalar Portainer"
 chmod +x descargar_imagenes.sh > /dev/null 2>&1 || print_error "No se pudieron descargar las imágenes o instalar Portainer"
-./descargar_imagenes.sh > /dev/null 2>&1 || print_error "No se pudieron descargar las imágenes o instalar Portainer"
+./descargar_imagenes.sh
 echo "Instalando Portainer"
 echo ""
 docker run -dt -p 9000:9000 --name=Portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v /home/djcrawleravp/docker/portainer:/data portainer/portainer:latest > /dev/null 2>&1 || print_error "No se pudo ejecutar el contenedor de Portainer"
