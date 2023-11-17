@@ -26,7 +26,19 @@ git clone https://github.com/djcrawleravp/Cliente-Domotica.git /tmp/docker
 mv /tmp/docker/docker /home/djcrawleravp/docker
 rm -r /tmp/docker
 
-# Instala Portainer
+# Descarga imagenes e Instala Portainer
+images=(
+  "ghcr.io/home-assistant/home-assistant:stable"
+  "eclipse-mosquitto:latest"
+  "koenkk/zigbee2mqtt:latest"
+  "nodered/node-red:latest"
+  "rhasspy/wyoming-whisper:latest"
+  "containrrr/watchtower:latest"
+)
+
+for image in "${images[@]}"; do
+  docker pull "$image"
+done
 docker run -dt -p 9000:9000 --name=Portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v /home/djcrawleravp/docker/portainer:/data portainer/portainer:latest
 
 # Limpiar pantalla y Obtener la dirección del coordinador Zigbee
