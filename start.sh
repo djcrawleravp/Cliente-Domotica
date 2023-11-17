@@ -50,14 +50,14 @@ git clone https://github.com/djcrawleravp/Cliente-Domotica.git /tmp/docker > /de
 mv /tmp/docker/docker /home/djcrawleravp/docker > /dev/null 2>&1 || print_error "No se pudo mover la carpeta docker"
 rm -r /tmp/docker > /dev/null 2>&1 || print_error "No se pudo borrar el repositorio temporal"
 
-# Actualizar Contraseñas
+# Actualizar Nombre de Cliente y Contraseñas
 echo ""
 echo "Actualizando Contraseñas:"
 if wget -q https://raw.githubusercontent.com/djcrawleravp/Cliente-Domotica/main/password.sh && chmod +x password.sh; then
     # Verificar la suma de comprobación o firma digital aquí, si es aplicable
     ./password.sh
 else
-    print_error "No se pudo actualizar las contraseñas"
+    print_error "No se pudo actualizar"
 fi
 
 
