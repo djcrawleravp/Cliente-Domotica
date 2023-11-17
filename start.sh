@@ -7,6 +7,11 @@ print_error() {
 
 clear
 
+# Pedir Nombre de Cliente
+read -s -p "Ingrese nombre del cliente: " cliente
+echo
+export cliente
+
 # Pedir Contraseña
 read -s -p "Ingrese la contraseña para el servidor: " password
 echo
