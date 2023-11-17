@@ -35,6 +35,9 @@ docker run -dt -p 9000:9000 --name=Portainer --restart=always -v /var/run/docker
 wget https://raw.githubusercontent.com/djcrawleravp/Cliente-Domotica/main/agregar_coordinador.sh && chmod +x agregar_coordinador.sh && ./agregar_coordinador.sh
 
 echo ""
-echo "Aceptar el permiso de join en Zero-Tier"
+echo "No te olvides de aceptar el permiso de join en Zero-Tier"
 echo ""
-echo "Continuar con el deployment en Portainer"
+echo "Portainer está listo para el deploy de docker compose"
+echo ""
+echo ""
+echo ""
