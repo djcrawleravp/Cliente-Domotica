@@ -20,6 +20,7 @@ echo ""
 
 # Preguntar si descargar imágenes
 read -p "¿Descargar imágenes de Docker? (y/n): " download_images
+clear
 
 # Instalar Dependencias
 echo "Instalando Dependencias:"
