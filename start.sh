@@ -67,6 +67,10 @@ fi
 ./agregar_coordinador.sh
 
 echo ""
+echo "Limpiando archivos de instalación:"
+rm -r *.sh
+
+echo ""
 echo "No te olvides de aceptar el permiso de join en Zero-Tier"
 echo ""
 echo "Portainer está listo para el deploy de docker compose"
