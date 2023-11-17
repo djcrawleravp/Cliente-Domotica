@@ -47,12 +47,11 @@ mv /tmp/docker/docker /home/djcrawleravp/docker > /dev/null 2>&1 || print_error 
 rm -r /tmp/docker > /dev/null 2>&1 || print_error "No se pudo borrar el repositorio temporal"
 
 # Descargar imágenes
-echo "Descargando Imagenes de Docker"
+echo "Descargando Imágenes de Docker"
 echo ""
-if ! (wget https://raw.githubusercontent.com/djcrawleravp/Cliente-Domotica/main/descargar_imagenes.sh && chmod +x descargar_imagenes.sh > /dev/null 2>&1); then
+if ! { wget https://raw.githubusercontent.com/djcrawleravp/Cliente-Domotica/main/descargar_imagenes.sh && chmod +x descargar_imagenes.sh; } > /dev/null 2>&1 && ./descargar_imagenes.sh; then
   print_error "No se pudieron descargar las imágenes o instalar Portainer"
 fi
-
 
 
 # Instalar Portainer
