@@ -17,7 +17,6 @@ for image in "${images[@]}"; do
     echo ""
   else
     echo -e "\e[32;40m$image Descargado\e[0m"
-
     echo ""
   fi
 done
