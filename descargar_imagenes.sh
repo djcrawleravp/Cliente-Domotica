@@ -16,7 +16,7 @@ for image in "${images[@]}"; do
     echo -e "\e[31;40mError al descargar la imagen: $image\e[0m"
     echo ""
   else
-    echo -e "\e[32;40m$image Descargado\e[0m"
+    echo -e "\e[30;42m$image Descargado\e[0m"
     echo ""
   fi
 done
