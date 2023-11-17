@@ -11,3 +11,4 @@ images=(
 )
 for image in "${images[@]}"; do
   docker pull "$image"
+done
