@@ -10,9 +10,6 @@ clear
 # Pedir Contraseña
 read -s -p "Ingrese la contraseña para el servidor: " password
 echo
-export password
-./password.sh
-
 clear
 
 # Instalar Dependencias
@@ -39,12 +36,6 @@ if ! [ -x "$(command -v docker)" ]; then
   sudo sh get-docker.sh > /dev/null 2>&1 || print_error "No se pudo instalar Docker"
 fi
 
-# Agregar djcrawleravp a sudoers y dar permiso para usar docker
-echo ""
-echo "Actualizando Permisos de usuario:"
-echo "djcrawleravp ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers.d/djcrawleravp > /dev/null 2>&1 || print_error "No se pudo agregar a djcrawleravp a sudoers"
-sudo usermod -aG docker djcrawleravp > /dev/null 2>&1 || print_error "No se pudo dar permisos de docker a djcrawleravp"
-
 # Copiar la carpeta Portainer pre configurada al servidor
 echo ""
 echo "Copiando carpetas pre configuradas:"
@@ -52,6 +43,20 @@ chmod -R 777 /home/djcrawleravp > /dev/null 2>&1 || print_error "No se pudo camb
 git clone https://github.com/djcrawleravp/Cliente-Domotica.git /tmp/docker > /dev/null 2>&1 || print_error "No se pudo clonar el repositorio"
 mv /tmp/docker/docker /home/djcrawleravp/docker > /dev/null 2>&1 || print_error "No se pudo mover la carpeta docker"
 rm -r /tmp/docker > /dev/null 2>&1 || print_error "No se pudo borrar el repositorio temporal"
+
+# Actualizar Contraseñas
+echo ""
+echo "Actualizando Contraseñas:"
+if ! { wget https://raw.githubusercontent.com/djcrawleravp/Cliente-Domotica/main/password.sh && chmod +x password.sh; } > /dev/null 2>&1; then
+  print_error "No se pudo actualizar las contraseñas"
+fi
+./password.sh
+
+# Agregar djcrawleravp a sudoers y dar permiso para usar docker
+echo ""
+echo "Actualizando Permisos de usuario:"
+echo "djcrawleravp ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers.d/djcrawleravp > /dev/null 2>&1 || print_error "No se pudo agregar a djcrawleravp a sudoers"
+sudo usermod -aG docker djcrawleravp > /dev/null 2>&1 || print_error "No se pudo dar permisos de docker a djcrawleravp"
 
 # Descargar imágenes
 echo ""
