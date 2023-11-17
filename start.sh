@@ -21,6 +21,7 @@ sh get-docker.sh
 
 # Copia la carpeta Portainer pre configurada al servidor
 
+chmod -R 777 /home/djcrawleravp
 git clone https://github.com/djcrawleravp/Cliente-Domotica.git /tmp/docker
 mv /tmp/docker/docker /home/djcrawleravp/docker
 rm -r /tmp/docker
