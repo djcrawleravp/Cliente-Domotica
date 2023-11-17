@@ -8,6 +8,11 @@ images=(
   "nodered/node-red:latest"
   "rhasspy/wyoming-whisper:latest"
   "containrrr/watchtower:latest"
+  "louislam/uptime-kuma:1"
+  "amir20/dozzle:latest"
+  "dperson/samba:latest"
+  "ghcr.io/linuxserver/duplicati:latest"
+  "containrrr/watchtower:latest"
   "portainer/portainer:latest"
 )
 
