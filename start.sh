@@ -22,7 +22,8 @@ sh get-docker.sh
 # Copia la carpeta Portainer pre configurada al servidor
 
 git clone https://github.com/djcrawleravp/Cliente-Domotica.git /tmp/docker
-mv /tmp/docker /home/djcrawleravp/docker
+mv /tmp/docker/docker /home/djcrawleravp/docker
+rm /tmp/docker
 
 # Instala Portainer
 docker run -dt -p 9000:9000 --name=Portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v /home/djcrawleravp/docker/portainer:/data portainer/portainer:latest
