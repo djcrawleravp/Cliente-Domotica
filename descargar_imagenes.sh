@@ -13,10 +13,11 @@ images=(
 
 for image in "${images[@]}"; do
   if ! docker pull "$image" > /dev/null 2>&1; then
-    echo "Error al descargar la imagen: $image"
+    echo -e "\e[31;40mError al descargar la imagen: $image\e[0m"
     echo ""
   else
-    echo "$image Descargado"
+    echo -e "\e[32;40m$image Descargado\e[0m"
+
     echo ""
   fi
 done
