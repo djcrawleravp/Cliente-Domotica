@@ -7,6 +7,14 @@ print_error() {
 
 clear
 
+# Pedir Contraseña
+read -s -p "Ingrese la contraseña para el servidor: " password
+echo
+export password
+./password.sh
+
+clear
+
 # Instalar Dependencias
 echo "Instalando Dependencias:"
 apt-get update -y > /dev/null 2>&1 || print_error "No se pudieron actualizar las dependencias"
