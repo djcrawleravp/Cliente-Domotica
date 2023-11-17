@@ -104,3 +104,5 @@ echo "Portainer está listo para el deploy de docker compose"
 echo ""
 echo ""
 echo ""
+echo "REINICIANDO!!!"
+reboot
