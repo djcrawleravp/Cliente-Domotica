@@ -8,3 +8,9 @@ if [ -n "$password" ]; then
 else
     echo -e "\e[97;41mERROR: No se proporcionó una contraseña válida\e[0m"
 fi
+if [ -n "$cliente" ]; then
+    # Utilizamos sed para buscar y reemplazar la etiqueta "#Cliente" con el nombre
+    sed -i "s|#Cliente|$cliente|g" "$docker_compose_file"
+else
+    echo -e "\e[97;41mERROR: No se proporcionó un nombre válido\e[0m"
+fi
