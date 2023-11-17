@@ -23,13 +23,13 @@ services:
 
   samba:
     image: dperson/samba:latest
-    hostname: Cliente
+    hostname: #Cliente
     container_name: Samba
     network_mode: host
     environment:
       - GROUPID=0
       - NMBD=true
-      - SHARE=Cliente;/Cliente;yes;no;no;all;djcrawleravp
+      - SHARE=#Cliente;/Server;yes;no;no;all;djcrawleravp
       - TZ=America/La_Paz
       - USER=djcrawleravp;#Contraseña
       - USERID=0
