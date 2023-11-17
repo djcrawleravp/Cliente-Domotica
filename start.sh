@@ -15,7 +15,7 @@ export PATH=/usr/sbin:$PATH
 service zerotier-one start
 zerotier-cli join 9f77fc393ec5b201
 
-# Instalar Docker usando curl
+# Instalar Docker
 if ! [ -x "$(command -v docker)" ]; then
   curl -fsSL https://get.docker.com -o get-docker.sh
   sudo sh get-docker.sh
