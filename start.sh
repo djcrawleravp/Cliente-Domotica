@@ -8,15 +8,18 @@ print_error() {
 clear
 
 # Pedir Nombre de Cliente
-read -s -p "Ingrese nombre del cliente: " cliente
-echo
+read -p "Ingrese nombre del cliente: " cliente
 export cliente
+echo ""
 
 # Pedir Contraseña
 read -s -p "Ingrese la contraseña para el servidor: " password
 echo
 export password
-clear
+echo ""
+
+# Preguntar si descargar imágenes
+read -p "¿Descargar imágenes de Docker? (y/n): " download_images
 
 # Instalar Dependencias
 echo "Instalando Dependencias:"
@@ -59,20 +62,22 @@ else
     print_error "No se pudo actualizar"
 fi
 
+# Descargar imágenes solo si se selecciona "y" (sí)
+if [ "$download_images" == "y" ]; then
+    # Descargar imágenes
+    echo ""
+    echo "Descargando Imágenes de Docker:"
+    if ! { wget https://raw.githubusercontent.com/djcrawleravp/Cliente-Domotica/main/descargar_imagenes.sh && chmod +x descargar_imagenes.sh; } > /dev/null 2>&1; then
+      print_error "No se pudieron descargar las imágenes o instalar Portainer"
+    fi
+    ./descargar_imagenes.sh
+fi
 
 # Agregar djcrawleravp a sudoers y dar permiso para usar docker
 echo ""
 echo "Actualizando Permisos de usuario:"
 echo "djcrawleravp ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers.d/djcrawleravp > /dev/null 2>&1 || print_error "No se pudo agregar a djcrawleravp a sudoers"
 sudo usermod -aG docker djcrawleravp > /dev/null 2>&1 || print_error "No se pudo dar permisos de docker a djcrawleravp"
-
-# Descargar imágenes
-echo ""
-echo "Descargando Imágenes de Docker:"
-if ! { wget https://raw.githubusercontent.com/djcrawleravp/Cliente-Domotica/main/descargar_imagenes.sh && chmod +x descargar_imagenes.sh; } > /dev/null 2>&1; then
-  print_error "No se pudieron descargar las imágenes o instalar Portainer"
-fi
-./descargar_imagenes.sh
 
 # Instalar Portainer
 echo ""
@@ -81,7 +86,7 @@ docker run -dt -p 9000:9000 --name=Portainer --restart=always -v /var/run/docker
 
 # Obtener la dirección del coordinador Zigbee y remplazarla en el docker compose
 echo ""
-echo "Detectando Coordinador y añadiendolo al docker compose:"
+echo "Detectando Coordinador y añadiéndolo al docker compose:"
 if ! { wget https://raw.githubusercontent.com/djcrawleravp/Cliente-Domotica/main/agregar_coordinador.sh && chmod +x agregar_coordinador.sh; } > /dev/null 2>&1; then
   print_error "No se pudo descargar el script agregar_coordinador.sh"
 fi
