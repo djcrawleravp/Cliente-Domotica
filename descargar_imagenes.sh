@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#Descargar Imagenes Docker
+# Descargar Imágenes Docker
 images=(
   #"ghcr.io/home-assistant/home-assistant:stable"
   #"eclipse-mosquitto:latest"
@@ -10,7 +10,11 @@ images=(
   #"containrrr/watchtower:latest"
   "portainer/portainer:latest"
 )
+
 for image in "${images[@]}"; do
-  docker pull "$image"
-  echo "$image Descargado"
+  if ! docker pull "$image" > /dev/null 2>&1; then
+    echo "Error al descargar la imagen: $image"
+  else
+    echo "$image Descargado"
+  fi
 done
