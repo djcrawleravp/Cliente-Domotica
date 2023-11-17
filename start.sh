@@ -42,4 +42,7 @@ else
     echo "No se detectó Coordinador Zigbee. Verifica que el dispositivo esté conectado"
 fi
 
-echo "Continuar con el paso 2 en Portainer"
+echo ""
+echo "Aceptar el permiso de join en Zero-Tier"
+echo ""
+echo "Continuar con el deployment en Portainer"
