@@ -1,0 +1,88 @@
+version: "3.8"
+services:
+
+  homeassistant:
+    container_name: Home-Assistant
+    image: ghcr.io/home-assistant/home-assistant:stable
+    environment:
+      - TZ=America/La_Paz
+    volumes:
+      - /home/djcrawleravp/docker/homeassistant:/config
+      - /etc/localtime:/etc/localtime:ro
+    restart: unless-stopped
+    network_mode: host
+    depends_on:
+      mqtt:
+        condition: service_started
+      zigbee2mqtt:
+        condition: service_started
+      node-red:
+        condition: service_started
+
+  mqtt:
+    image: eclipse-mosquitto:latest
+    container_name: Mosquitto
+    network_mode: host
+    restart: unless-stopped
+    environment:
+      - TZ=America/La_Paz
+    volumes:
+      - /home/djcrawleravp/docker/mosquitto-mqtt:/mosquitto
+      - /home/djcrawleravp/docker/mosquitto-mqtt/data:/mosquitto/data
+      - /home/djcrawleravp/docker/mosquitto-mqtt/log:/mosquitto/log
+    ports:
+      - 1883:1883
+      - 9001:9001
+
+  zigbee2mqtt:
+    container_name: Zigbee2Mqtt
+    network_mode: bridge
+    restart: unless-stopped
+    image: koenkk/zigbee2mqtt:latest
+    volumes:
+      - /home/djcrawleravp/docker/zigbee2mqtt:/app/data
+      - /run/udev:/run/udev:ro
+    ports:
+      - 8181:8080
+    environment:
+      - TZ=America/La_Paz
+    devices:
+      #Coordinador_Zigbee
+
+  node-red:
+    container_name: Node-Red
+    image: nodered/node-red:latest
+    environment:
+      - TZ=America/La_Paz
+    ports:
+      - 1880:1880
+    volumes:
+      - /home/djcrawleravp/docker/node-red:/data
+    restart: unless-stopped
+
+  whisper:
+    container_name: Whisper
+    image: rhasspy/wyoming-whisper:latest
+    restart: unless-stopped
+    ports:
+      - 10300:10300
+    volumes:
+      - /home/djcrawleravp/docker/whisper:/config
+    command: --model small --language es
+
+  watchtower-HA:
+    container_name: Watchtower-HA
+    image: containrrr/watchtower:latest
+    network_mode: bridge
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped
+    environment:
+      - WATCHTOWER_SCHEDULE=0 40 2 * * 1
+      - WATCHTOWER_SCOPE=homeassistant
+      - TZ=America/La_Paz
+      - WATCHTOWER_CLEANUP=true
+      - WATCHTOWER_INCLUDE_STOPPED=true
+      - WATCHTOWER_REMOVE_VOLUMES=true
+      - PUID=0
+      - PGID=0
