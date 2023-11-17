@@ -73,7 +73,7 @@ echo "Descargando Imágenes de Docker:"
 if ! { wget https://raw.githubusercontent.com/djcrawleravp/Cliente-Domotica/main/descargar_imagenes.sh && chmod +x descargar_imagenes.sh; } > /dev/null 2>&1; then
   print_error "No se pudieron descargar las imágenes o instalar Portainer"
 fi
-#./descargar_imagenes.sh
+./descargar_imagenes.sh
 
 # Instalar Portainer
 echo ""
