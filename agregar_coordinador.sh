@@ -1,3 +1,4 @@
+#!/bin/bash
 # Limpiar pantalla y Obtener la dirección del coordinador Zigbee
 docker_compose_file="/home/djcrawleravp/docker/portainer/custom_templates/1/docker-compose.yml"
 device_address=$(ls /dev/serial/by-id/ | grep "Texas_Instruments" | head -n 1)
