@@ -8,7 +8,7 @@ print_error() {
 clear
 
 # Instalar Dependencias
-echo "Instalado Dependencias"
+echo "Instalando Dependencias"
 echo ""
 apt-get update -y > /dev/null 2>&1 || print_error "No se pudieron actualizar las dependencias"
 apt-get upgrade -y > /dev/null 2>&1 || print_error "No se pudieron actualizar las dependencias"
