@@ -1,0 +1,54 @@
+version: "3.8"
+services:
+
+  uptime-kuma:  
+    image: louislam/uptime-kuma:1
+    container_name: Uptime-Kuma
+    network_mode: host
+    volumes:
+      - /home/djcrawleravp/docker/Uptime-Kuma:/app/data
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+
+  dozzle:
+    container_name: Dozzle
+    image: amir20/dozzle:latest
+    network_mode: bridge
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 4040:8080
+    restart: unless-stopped
+
+  samba:
+    image: dperson/samba:latest
+    hostname: Cliente
+    container_name: Samba
+    network_mode: host
+    environment:
+      - GROUPID=0
+      - NMBD=true
+      - SHARE=Cliente;/Cliente;yes;no;no;all;djcrawleravp
+      - TZ=America/La_Paz
+      - USER=djcrawleravp;#Contraseña
+      - USERID=0
+      - WORKGROUP=WORKGROUP
+    logging:
+      driver: json-file
+    restart: unless-stopped
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /home/djcrawleravp/docker:/Server/docker
+
+  duplicati:
+    container_name: Duplicati
+    ports:
+      - 8200:8200
+    volumes:
+      - /home/djcrawleravp/docker/Duplicati:/config
+      - /root:/source
+    image: ghcr.io/linuxserver/duplicati:latest
+    restart: unless-stopped
+    
+    
