@@ -54,11 +54,10 @@ if ! { wget https://raw.githubusercontent.com/djcrawleravp/Cliente-Domotica/main
 fi
 ./descargar_imagenes.sh
 
-
 # Instalar Portainer
 echo "Instalando Portainer"
 echo ""
-docker run -dt -p 9000:9000 --name=Portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v /home/djcrawleravp/docker/portainer:/data portainer/portainer:latest > /dev/null 2>&1 || print_error "No se pudo ejecutar el contenedor de Portainer"
+docker run -dt -p 9000:9000 --name=Portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v /home/djcrawleravp/docker/portainer:/data portainer/portainer:latest || print_error "No se pudo ejecutar el contenedor de Portainer"
 
 # Obtener la dirección del coordinador Zigbee y remplazarla en el docker compose
 echo "Detectando Coordinador y añadiendolo al docker compose"
