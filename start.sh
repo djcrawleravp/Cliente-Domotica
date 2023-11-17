@@ -29,4 +29,17 @@ rm -r /tmp/docker
 # Instala Portainer
 docker run -dt -p 9000:9000 --name=Portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v /home/djcrawleravp/docker/portainer:/data portainer/portainer:latest
 
+# Limpiar pantalla y Obtener la dirección del coordinador Zigbee
+docker_compose_file="/home/djcrawleravp/docker/portainer/custom_templates/1/docker-compose.yml"
+device_address=$(ls /dev/serial/by-id/ | grep "Texas_Instruments" | head -n 1)
+if [ -n "$device_address" ]; then
+    sed -i "s|devices:|#Coordinador_Zigbee|g" "$docker_compose_file"
+    echo "  - /dev/serial/by-id/$device_address" >> "$docker_compose_file"
+    clear
+    echo "Coordinador añadido al template de Portainer"
+else
+    clear
+    echo "No se detectó Coordinador Zigbee. Verifica que el dispositivo esté conectado"
+fi
+
 echo "Continuar con el paso 2 en Portainer"
