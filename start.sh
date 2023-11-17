@@ -2,7 +2,7 @@
 
 # Función para imprimir errores
 print_error() {
-    echo -e "\e[97;41mError:\e[0m $1"
+    echo -e "\e[97;41mError:\e[0m \e[97;41m$1\e[0m"
 }
 
 clear
