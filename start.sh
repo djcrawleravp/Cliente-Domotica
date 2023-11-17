@@ -9,6 +9,7 @@ apt-get install iptables -y
 apt-get install curl -y
 apt-get install git -y 
 curl -s https://install.zerotier.com | sudo bash
+export PATH=/usr/sbin:$PATH
 
 #Iniciar Zero-Tier y Unirse a la red (Clientes)
 service zerotier-one start
