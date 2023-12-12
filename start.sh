@@ -40,7 +40,12 @@ echo ""
 read -p "¿Descargar imágenes de Docker? (y/n): " download_images
 clear
 
+# Cambiar Hostname
+echo "Actualizando Hostname"
+hostnamectl set-hostname "$cliente" > /dev/null 2>&1 || print_error "No se pudo cambiar el hostname"
+
 # Instalar Dependencias
+echo ""
 echo "Instalando Dependencias:"
 apt-get update -y > /dev/null 2>&1 || print_error "No se pudieron actualizar las dependencias"
 apt-get upgrade -y > /dev/null 2>&1 || print_error "No se pudieron actualizar las dependencias"
