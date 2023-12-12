@@ -6,7 +6,7 @@ services:
     container_name: Uptime-Kuma
     network_mode: host
     volumes:
-      - /home/djcrawleravp/docker/Uptime-Kuma:/app/data
+      - /home/#username/docker/Uptime-Kuma:/app/data
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
@@ -29,9 +29,9 @@ services:
     environment:
       - GROUPID=0
       - NMBD=true
-      - SHARE=#Cliente;/Server;yes;no;no;all;djcrawleravp
+      - SHARE=#Cliente;/Server;yes;no;no;all;#username
       - TZ=America/La_Paz
-      - USER=djcrawleravp;#Contraseña
+      - USER=#username;#Contraseña
       - USERID=0
       - WORKGROUP=WORKGROUP
     logging:
@@ -39,14 +39,14 @@ services:
     restart: unless-stopped
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - /home/djcrawleravp/docker:/Server/docker
+      - /home/#username/docker:/Server/docker
 
   duplicati:
     container_name: Duplicati
     ports:
       - 8200:8200
     volumes:
-      - /home/djcrawleravp/docker/Duplicati:/config
+      - /home/#username/docker/Duplicati:/config
       - /root:/source
     image: ghcr.io/linuxserver/duplicati:latest
     restart: unless-stopped
