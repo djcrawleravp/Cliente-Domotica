@@ -21,6 +21,7 @@ echo ""
 while true; do
     read -s -p "Ingrese la contraseña para el servidor: " password
     echo
+    echo ""
 
 # Pedir Confirmación de Contraseña
     read -s -p "Confirme la contraseña: " confirm_password
@@ -41,7 +42,7 @@ read -p "¿Descargar imágenes de Docker? (y/n): " download_images
 clear
 
 # Cambiar Hostname
-echo "Actualizando Hostname"
+echo "Actualizando Hostname:"
 hostnamectl set-hostname "$cliente" > /dev/null 2>&1 || print_error "No se pudo cambiar el hostname"
 
 # Instalar Dependencias
