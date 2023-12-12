@@ -12,6 +12,11 @@ read -p "Ingrese nombre del cliente: " cliente
 export cliente
 echo ""
 
+# Pedir Nombre de Usuario
+read -p "Ingrese nombre de usuario: " username
+export username
+echo ""
+
 # Pedir Contraseña
 read -s -p "Ingrese la contraseña para el servidor: " password
 echo
@@ -49,15 +54,15 @@ fi
 # Copiar la carpeta Portainer pre configurada al servidor
 echo ""
 echo "Copiando carpetas pre configuradas:"
-chmod -R 777 /home/djcrawleravp > /dev/null 2>&1 || print_error "No se pudo cambiar permisos de la carpeta"
-git clone https://github.com/djcrawleravp/Cliente-Domotica.git /tmp/docker > /dev/null 2>&1 || print_error "No se pudo clonar el repositorio"
-mv /tmp/docker/docker /home/djcrawleravp/docker > /dev/null 2>&1 || print_error "No se pudo mover la carpeta docker"
+chmod -R 777 /home/$username > /dev/null 2>&1 || print_error "No se pudo cambiar permisos de la carpeta"
+git clone https://github.com/$username/Cliente-Domotica.git /tmp/docker > /dev/null 2>&1 || print_error "No se pudo clonar el repositorio"
+mv /tmp/docker/docker /home/$username/docker > /dev/null 2>&1 || print_error "No se pudo mover la carpeta docker"
 rm -r /tmp/docker > /dev/null 2>&1 || print_error "No se pudo borrar el repositorio temporal"
 
 # Actualizar Nombre de Cliente y Contraseñas
 echo ""
 echo "Actualizando Contraseñas:"
-if wget -q https://raw.githubusercontent.com/djcrawleravp/Cliente-Domotica/main/password.sh && chmod +x password.sh; then
+if wget -q https://raw.githubusercontent.com/$username/Cliente-Domotica/main/password.sh && chmod +x password.sh; then
     ./password.sh
 else
     print_error "No se pudo actualizar"
@@ -68,27 +73,27 @@ if [ "$download_images" == "y" ]; then
     # Descargar imágenes
     echo ""
     echo "Descargando Imágenes de Docker:"
-    if ! { wget https://raw.githubusercontent.com/djcrawleravp/Cliente-Domotica/main/descargar_imagenes.sh && chmod +x descargar_imagenes.sh; } > /dev/null 2>&1; then
+    if ! { wget https://raw.githubusercontent.com/$username/Cliente-Domotica/main/descargar_imagenes.sh && chmod +x descargar_imagenes.sh; } > /dev/null 2>&1; then
       print_error "No se pudieron descargar las imágenes o instalar Portainer"
     fi
     ./descargar_imagenes.sh
 fi
 
-# Agregar djcrawleravp a sudoers y dar permiso para usar docker
+# Agregar $username a sudoers y dar permiso para usar docker
 echo ""
 echo "Actualizando Permisos de usuario:"
-echo "djcrawleravp ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers.d/djcrawleravp > /dev/null 2>&1 || print_error "No se pudo agregar a djcrawleravp a sudoers"
-sudo usermod -aG docker djcrawleravp > /dev/null 2>&1 || print_error "No se pudo dar permisos de docker a djcrawleravp"
+echo "$username ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers.d/$username > /dev/null 2>&1 || print_error "No se pudo agregar a $username a sudoers"
+sudo usermod -aG docker $username > /dev/null 2>&1 || print_error "No se pudo dar permisos de docker a $username"
 
 # Instalar Portainer
 echo ""
 echo "Instalando Portainer:"
-docker run -dt -p 9000:9000 --name=Portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v /home/djcrawleravp/docker/portainer:/data portainer/portainer:latest || print_error "No se pudo ejecutar el contenedor de Portainer"
+docker run -dt -p 9000:9000 --name=Portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v /home/$username/docker/portainer:/data portainer/portainer:latest || print_error "No se pudo ejecutar el contenedor de Portainer"
 
 # Obtener la dirección del coordinador Zigbee y remplazarla en el docker compose
 echo ""
 echo "Detectando Coordinador y añadiéndolo al docker compose:"
-if ! { wget https://raw.githubusercontent.com/djcrawleravp/Cliente-Domotica/main/agregar_coordinador.sh && chmod +x agregar_coordinador.sh; } > /dev/null 2>&1; then
+if ! { wget https://raw.githubusercontent.com/$username/Cliente-Domotica/main/agregar_coordinador.sh && chmod +x agregar_coordinador.sh; } > /dev/null 2>&1; then
   print_error "No se pudo descargar el script agregar_coordinador.sh"
 fi
 ./agregar_coordinador.sh
