@@ -7,7 +7,7 @@ services:
     environment:
       - TZ=America/La_Paz
     volumes:
-      - /home/djcrawleravp/docker/homeassistant:/config
+      - /home/#username/docker/homeassistant:/config
       - /etc/localtime:/etc/localtime:ro
     restart: unless-stopped
     network_mode: host
@@ -27,9 +27,9 @@ services:
     environment:
       - TZ=America/La_Paz
     volumes:
-      - /home/djcrawleravp/docker/mosquitto-mqtt:/mosquitto
-      - /home/djcrawleravp/docker/mosquitto-mqtt/data:/mosquitto/data
-      - /home/djcrawleravp/docker/mosquitto-mqtt/log:/mosquitto/log
+      - /home/#username/docker/mosquitto-mqtt:/mosquitto
+      - /home/#username/docker/mosquitto-mqtt/data:/mosquitto/data
+      - /home/#username/docker/mosquitto-mqtt/log:/mosquitto/log
     ports:
       - 1883:1883
       - 9001:9001
@@ -40,7 +40,7 @@ services:
     restart: unless-stopped
     image: koenkk/zigbee2mqtt:latest
     volumes:
-      - /home/djcrawleravp/docker/zigbee2mqtt:/app/data
+      - /home/#username/docker/zigbee2mqtt:/app/data
       - /run/udev:/run/udev:ro
     ports:
       - 8181:8080
@@ -57,7 +57,7 @@ services:
     ports:
       - 1880:1880
     volumes:
-      - /home/djcrawleravp/docker/node-red:/data
+      - /home/#username/docker/node-red:/data
     restart: unless-stopped
 
   whisper:
@@ -67,5 +67,5 @@ services:
     ports:
       - 10300:10300
     volumes:
-      - /home/djcrawleravp/docker/whisper:/config
+      - /home/#username/docker/whisper:/config
     command: --model small --language es
