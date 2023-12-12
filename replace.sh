@@ -23,7 +23,7 @@ replace_labels() {
     else
         echo -e "\e[97;41mERROR: No se proporcionó un nombre de usuario válido\e[0m"
     fi
-    }
+}
 
 # Reemplazar etiquetas en el primer archivo
 replace_labels "$docker_compose_file_1"
