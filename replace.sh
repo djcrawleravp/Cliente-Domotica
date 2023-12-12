@@ -17,6 +17,7 @@ replace_labels() {
         sed -i "s|#Cliente|$cliente|g" "$file"
     else
         echo -e "\e[97;41mERROR: No se proporcionó un nombre válido\e[0m"
+    fi
 
     if [ -n "$username" ]; then
         sed -i "s|#username|$username|g" "$file"
