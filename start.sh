@@ -21,9 +21,9 @@ echo ""
 while true; do
     read -s -p "Ingrese la contraseña para el servidor: " password
     echo
-    echo ""
 
 # Pedir Confirmación de Contraseña
+    echo ""
     read -s -p "Confirme la contraseña: " confirm_password
     echo
 
