@@ -62,8 +62,8 @@ rm -r /tmp/docker > /dev/null 2>&1 || print_error "No se pudo borrar el reposito
 # Actualizar Nombre de Cliente y Contraseñas
 echo ""
 echo "Actualizando Contraseñas:"
-if wget -q https://raw.githubusercontent.com/$username/Cliente-Domotica/main/password.sh && chmod +x password.sh; then
-    ./password.sh
+if wget -q https://raw.githubusercontent.com/$username/Cliente-Domotica/main/replace.sh && chmod +x replace.sh; then
+    ./replace.sh
 else
     print_error "No se pudo actualizar"
 fi
