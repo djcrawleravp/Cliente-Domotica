@@ -20,6 +20,16 @@ echo ""
 # Pedir Contraseña
 read -s -p "Ingrese la contraseña para el servidor: " password
 echo
+
+# Pedir Confirmación de Contraseña
+read -s -p "Confirme la contraseña: " confirm_password
+echo
+
+# Verificar si la contraseña y la confirmación coinciden
+if [ "$password" != "$confirm_password" ]; then
+    echo -e "\e[97;41mERROR: Las contraseñas no coinciden\e[0m"
+    exit 1  # Salir del script en caso de error
+fi
 export password
 echo ""
 
