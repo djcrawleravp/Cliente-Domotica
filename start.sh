@@ -120,7 +120,7 @@ fi
 echo ""
 echo "Limpiando archivos de instalación:"
 rm -r *.sh
-
+clear
 echo ""
 echo "No te olvides de aceptar el permiso de join en Zero-Tier"
 echo ""
