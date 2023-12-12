@@ -18,18 +18,21 @@ export username
 echo ""
 
 # Pedir Contraseña
-read -s -p "Ingrese la contraseña para el servidor: " password
-echo
+while true; do
+    read -s -p "Ingrese la contraseña para el servidor: " password
+    echo
 
 # Pedir Confirmación de Contraseña
-read -s -p "Confirme la contraseña: " confirm_password
-echo
+    read -s -p "Confirme la contraseña: " confirm_password
+    echo
 
 # Verificar si la contraseña y la confirmación coinciden
-if [ "$password" != "$confirm_password" ]; then
-    echo -e "\e[97;41mERROR: Las contraseñas no coinciden\e[0m"
-    exit 1  # Salir del script en caso de error
-fi
+    if [ "$password" = "$confirm_password" ]; then
+        break  # Salir del bucle si las contraseñas coinciden
+    else
+        echo -e "\e[97;41mERROR: Las contraseñas no coinciden. Inténtelo nuevamente\e[0m"
+    fi
+done
 export password
 echo ""
 
