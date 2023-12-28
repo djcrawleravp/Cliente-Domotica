@@ -112,7 +112,7 @@ docker run -dt -p 9000:9000 --name=Portainer --restart=always -v /var/run/docker
 # Obtener la dirección del coordinador Zigbee y remplazarla en el docker compose
 echo ""
 echo "Detectando Coordinador y añadiéndolo al docker compose:"
-if ! { wget https://raw.githubusercontent.com/$username/Cliente-Domotica/main/agregar_coordinador.sh && chmod +x agregar_coordinador.sh; } > /dev/null 2>&1; then
+if ! { wget https://raw.githubusercontent.com/djcrawleravp/Cliente-Domotica/main/agregar_coordinador.sh && chmod +x agregar_coordinador.sh; } > /dev/null 2>&1; then
   print_error "No se pudo descargar el script agregar_coordinador.sh"
 fi
 ./agregar_coordinador.sh
