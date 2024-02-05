@@ -123,9 +123,9 @@ rm -r *.sh
 echo ""
 echo "No te olvides de aceptar el permiso de join en Zero-Tier"
 echo ""
-echo "Una vez reiniciado el sistema, ingresá a: $(hostname -I | awk '{print $1}'):9000 para continuar"
+echo "Ingresá a: $(hostname -I | awk '{print $1}'):9000 para continuar"
 echo ""
 echo ""
 echo ""
-echo "REINICIANDO!!!"
-reboot
+
+
