@@ -69,6 +69,10 @@ if ! [ -x "$(command -v docker)" ]; then
   curl -fsSL https://get.docker.com -o get-docker.sh > /dev/null 2>&1 || print_error "No se pudo descargar Docker"
   sudo sh get-docker.sh > /dev/null 2>&1 || print_error "No se pudo instalar Docker"
 fi
+if ! [ -x "$(command -v docker-compose)" ]; then
+  sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose > /dev/null 2>&1 || print_error "No se pudo instalar Docker Compose"
+  sudo chmod +x /usr/local/bin/docker-compose > /dev/null 2>&1 || print_error "No se pudo dar permisos de ejecución a Docker Compose"
+fi
 
 # Copiar la carpeta Portainer pre configurada al servidor
 echo ""
