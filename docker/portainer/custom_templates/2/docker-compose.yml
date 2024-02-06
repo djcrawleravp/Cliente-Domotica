@@ -47,7 +47,7 @@ services:
       - 8200:8200
     volumes:
       - /home/#username/docker/Duplicati:/config
-      - /root:/source
+      - /home/#username:/source
     image: ghcr.io/linuxserver/duplicati:latest
     restart: unless-stopped
 
